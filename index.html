@@ -309,6 +309,7 @@
     modalDate.textContent = `9 月 ${day} 日 · 值日提醒`;
     gcalBtn.href = gcalLink(day, duty.label);
     icsBtn.href = `${duty.ics}`;
+    icsBtn.setAttribute('download', duty.ics);
     overlay.classList.add('show');
   }
   document.getElementById('closeBtn').addEventListener('click', () => overlay.classList.remove('show'));
