@@ -8,20 +8,20 @@
   @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap');
 
   :root{
-    --bg:#FBF1E7;
+    --bg:#E7F1DF;
     --surface:#FFFFFF;
-    --surface-2:#F5EADC;
-    --line:#EDE0CF;
-    --ink:#5B4636;
-    --muted:#A6927E;
+    --surface-2:#EEF5E7;
+    --line:#DCE8D1;
+    --ink:#4E5A40;
+    --muted:#8B9C7C;
 
     --rose:#D98B7B;
     --rose-dark:#B96956;
     --rose-soft:#F5DDD3;
 
-    --sage:#93AA82;
-    --sage-dark:#6E8A5C;
-    --sage-soft:#E7EEDF;
+    --sage:#7FA068;
+    --sage-dark:#5C7A49;
+    --sage-soft:#DCEACE;
 
     --honey:#E3B575;
     --honey-ink:#6B4A1E;
@@ -35,9 +35,9 @@
     color:var(--ink);
     background:
       radial-gradient(circle, var(--line) 2.5px, transparent 2.5px) 0 0/40px 40px,
-      radial-gradient(700px 400px at -10% -6%, var(--rose-soft) 0%, transparent 60%),
-      radial-gradient(600px 380px at 110% 4%, var(--sage-soft) 0%, transparent 58%),
-      radial-gradient(650px 460px at 50% 115%, var(--honey-soft) 0%, transparent 55%),
+      radial-gradient(800px 500px at 50% -8%, var(--sage-soft) 0%, transparent 62%),
+      radial-gradient(600px 380px at 110% 6%, var(--honey-soft) 0%, transparent 55%),
+      radial-gradient(650px 460px at -6% 108%, var(--rose-soft) 0%, transparent 50%),
       var(--bg);
     background-blend-mode:normal, multiply, multiply, multiply, normal;
     min-height:100vh;
@@ -174,7 +174,6 @@
   }
   .btn.google{ background:var(--sage); color:#fff; }
   .btn.apple{ background:var(--rose-soft); color:var(--rose-dark); }
-  .btn.subscribe{ background:var(--honey-soft); color:var(--honey-ink); font-size:13px; }
   .btn:last-of-type{ margin-bottom:0; }
   .modal .note{ font-size:11px; color:var(--muted); margin-top:12px; line-height:1.5; }
 </style>
@@ -208,10 +207,11 @@
       <div id="modalAvatar"></div>
       <h2 id="modalName"></h2>
       <p class="date-line" id="modalDate"></p>
-      <a class="btn google" id="gcalBtn" target="_blank" rel="noopener">📅 加入 Google 日历（推荐）</a>
+      <a class="btn google" id="gcalBtn" target="_blank" rel="noopener">📅 加入 Google 日历</a>
+      <p class="note note-google">点了会跳到 Google 页面，确认一下就设好啦。</p>
+
       <a class="btn apple" id="icsBtn" href="#">🍎 加入 iPhone / Outlook 日历</a>
-      <a class="btn subscribe" id="subscribeBtn" href="#">🔁 订阅我的专属提醒（设置一次，以后自动更新）</a>
-      <p class="note">Google 日历最稳定，点了确认一下就好。iPhone 自带日历：按勾勾后如果跳出「选日历」，选一个再按一次勾勾确认。想以后每个月都不用手动加，用「订阅我的专属提醒」——只显示你自己的值日日期，设置一次就一直自动更新。</p>
+      <p class="note note-apple">点开后，画面中间下方会有「添加到日历 Add To Calendar」按钮，按一下就好；如果跳出「选日历」的画面，选一个后再按一次确认。</p>
     </div>
   </div>
 
@@ -300,13 +300,7 @@
   const modalDate = document.getElementById('modalDate');
   const gcalBtn = document.getElementById('gcalBtn');
   const icsBtn = document.getElementById('icsBtn');
-  const subscribeBtn = document.getElementById('subscribeBtn');
   let current = null;
-
-  function feedUrl(feedPath){
-    const base = location.href.replace(/[^/]*$/, '');
-    return base.replace(/^https?:\/\//, 'webcal://') + feedPath;
-  }
 
   function openModal(day, duty){
     current = { day, duty };
@@ -318,7 +312,6 @@
     gcalBtn.href = gcalLink(day, duty.label);
     icsBtn.href = `${duty.ics}`;
     icsBtn.setAttribute('download', duty.ics);
-    subscribeBtn.href = feedUrl(duty.feed);
     overlay.classList.add('show');
   }
   document.getElementById('closeBtn').addEventListener('click', () => overlay.classList.remove('show'));
