@@ -207,9 +207,9 @@
       <div id="modalAvatar"></div>
       <h2 id="modalName"></h2>
       <p class="date-line" id="modalDate"></p>
-      <a class="btn google" id="gcalBtn" target="_blank" rel="noopener">📅 加入 Google 日历</a>
+      <a class="btn google" id="gcalBtn" target="_blank" rel="noopener">📅 加入 Google 日历（推荐）</a>
       <a class="btn apple" id="icsBtn" href="#">🍎 加入 iPhone / Outlook 日历</a>
-      <p class="note">点了会直接跳到你手机的日历 App，确认「添加/存储」一下就设好提醒啦。</p>
+      <p class="note">Google 日历这个最稳定，点了会跳去确认一下就好。iPhone 自带日历少数机型可能没反应，想让 Google 日历也显示在手机自带日历上，可以去 设置 → 日历 → 账户 → 添加 Google 账号，打开同步就行。</p>
     </div>
   </div>
 
@@ -289,7 +289,7 @@
     const dt = `202609${pad(day)}`;
     const text = encodeURIComponent(`🧹 今天轮到你值日啦 - ${name}`);
     const details = encodeURIComponent('别忘记完成今天的值日任务哦，辛苦啦！');
-    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${dt}T080000/${dt}T081500&details=${details}`;
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${dt}T063000/${dt}T064500&details=${details}`;
   }
 
   const overlay = document.getElementById('overlay');
