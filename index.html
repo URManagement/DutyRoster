@@ -302,7 +302,7 @@
     const dt = `202609${pad(day)}`;
     const text = encodeURIComponent(`🧹 今天轮到你值日啦 - ${name}`);
     const details = encodeURIComponent('别忘记完成今天的值日任务哦，辛苦啦！');
-    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${dt}T063000/${dt}T064500&details=${details}`;
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${dt}T200000/${dt}T201500&details=${details}`;
   }
 
   const overlay = document.getElementById('overlay');
@@ -321,7 +321,7 @@
     modalName.textContent = duty.label;
     modalDate.textContent = `9 月 ${day} 日 · 值日提醒`;
     gcalBtn.href = gcalLink(day, duty.label);
-    icsBtn.href = `${duty.ics}`;
+    icsBtn.href = `events/${duty.ics}`;
     icsBtn.setAttribute('download', duty.ics);
     overlay.classList.add('show');
   }
